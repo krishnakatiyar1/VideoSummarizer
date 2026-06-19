@@ -3,7 +3,7 @@ const loader = document.getElementById("loader");
 
 button.addEventListener("click", async () => {
 
-    const url = document.getElementById("videoUrl").value;
+    const url = document.getElementById("videoUrl").value.trim();
 
     if (!url) {
         alert("Please enter a YouTube URL");
@@ -24,23 +24,27 @@ button.addEventListener("click", async () => {
 
         const data = await response.json();
 
-        console.log("SERVER RESPONSE:");
-        console.log(data);
-
-        if (!response.ok) {
-            throw new Error(
-                data.message || "Server Error"
-            );
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Failed to generate summary");
         }
 
         document.getElementById("summary").innerText =
-            data.summary;
+            data.summary || "No summary available.";
 
-        document.getElementById("topics").innerText =
-            data.topics;
+        let topicsText = "";
+
+        if (Array.isArray(data.topics)) {
+            topicsText = data.topics.map(topic => `• ${topic}`).join("\n");
+        } else if (typeof data.topics === "string") {
+            topicsText = data.topics;
+        } else {
+            topicsText = "No topics available.";
+        }
+
+        document.getElementById("topics").innerText = topicsText;
 
         document.getElementById("explanation").innerText =
-            data.explanation;
+            data.explanation || "No explanation available.";
 
     } catch (error) {
 

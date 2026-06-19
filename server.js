@@ -34,6 +34,7 @@ function getVideoId(url) {
         return parsedUrl.searchParams.get("v");
 
     } catch {
+
         return null;
     }
 }
@@ -69,7 +70,12 @@ app.post("/api/summarize", async (req, res) => {
             .map(item => item.text)
             .join(" ");
 
-        console.log("Transcript Length:", transcriptText.length);
+        if (!transcriptText) {
+            return res.status(400).json({
+                success: false,
+                message: "No transcript found for this video."
+            });
+        }
 
         const limitedTranscript =
             transcriptText.substring(0, 15000);
@@ -79,37 +85,65 @@ app.post("/api/summarize", async (req, res) => {
         });
 
         const prompt = `
-You are a professional video analyst.
+Analyze this YouTube transcript.
 
-Analyze the following video transcript and return:
+Return ONLY valid JSON.
 
-1. Detailed Summary
-
-2. Key Topics
-   - Use bullet points
-
-3. Detailed Explanation
-   - Explain the important concepts
-   - Use simple language
+{
+  "summary": "Detailed summary here",
+  "topics": [
+    "Topic 1",
+    "Topic 2",
+    "Topic 3"
+  ],
+  "explanation": "Detailed explanation here"
+}
 
 Transcript:
-
 ${limitedTranscript}
 `;
-
-        console.log("Generating AI summary...");
 
         const result =
             await model.generateContent(prompt);
 
-        const aiResponse =
+        let responseText =
             result.response.text();
+
+        responseText = responseText
+            .replace(/```json/g, "")
+            .replace(/```/g, "")
+            .trim();
+
+        console.log("Gemini Response:");
+        console.log(responseText);
+
+        let parsedData;
+
+        try {
+
+            parsedData = JSON.parse(responseText);
+
+        } catch {
+
+            parsedData = {
+                summary: responseText,
+                topics: ["AI generated topics unavailable"],
+                explanation: responseText
+            };
+        }
+
+        if (!Array.isArray(parsedData.topics)) {
+
+            parsedData.topics = [
+                String(parsedData.topics || "General Topic")
+            ];
+        }
 
         res.json({
             success: true,
-            summary: aiResponse,
-            topics: "Topics are included in AI response",
-            explanation: aiResponse
+            summary: parsedData.summary,
+            topics: parsedData.topics,
+            explanation: parsedData.explanation
         });
 
     } catch (error) {
