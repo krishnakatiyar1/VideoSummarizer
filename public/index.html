@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoSummarizer AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Glow Effects -->
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            🎥 VideoSummarizer AI
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#results">Results</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <h1>
+            Turn Any YouTube Video Into
+            <span>Detailed Notes & Insights</span>
+        </h1>
+
+        <p>
+            Get AI-powered summaries, key topics, explanations, and study notes from any YouTube video in seconds.
+        </p>
+
+        <div class="input-box">
+
+            <input
+                id="videoUrl"
+                type="text"
+                placeholder="Paste YouTube Video URL..."
+            >
+
+            <button id="generateBtn">
+                Generate Summary
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+
+        <div class="stat">
+            <h2>AI</h2>
+            <p>Powered Analysis</p>
+        </div>
+
+        <div class="stat">
+            <h2>Fast</h2>
+            <p>Instant Processing</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Always Available</p>
+        </div>
+
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+
+        <div class="card">
+            <h3>📄 Detailed Summary</h3>
+            <p>
+                Generate comprehensive summaries from long videos within seconds.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Key Topics</h3>
+            <p>
+                Extract the most important concepts and learning points automatically.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🧠 Topic Explanations</h3>
+            <p>
+                Understand every topic with clear AI-generated explanations.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>💬 Video Q&A</h3>
+            <p>
+                Ask questions and receive answers directly from the video content.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results">
+
+        <h2>Summary Results</h2>
+
+        <div class="result-grid">
+
+            <div class="result-box">
+                <h3>📄 Summary</h3>
+                <p id="summary">
+                    Your generated summary will appear here...
+                </p>
+            </div>
+
+            <div class="result-box">
+                <h3>🎯 Key Topics</h3>
+                <p id="topics">
+                    Extracted topics will appear here...
+                </p>
+            </div>
+
+            <div class="result-box">
+                <h3>🧠 Detailed Explanation</h3>
+                <p id="explanation">
+                    Detailed explanations will appear here...
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            © 2026 VideoSummarizer AI | Transform Videos Into Knowledge
+        </p>
+    </footer>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
