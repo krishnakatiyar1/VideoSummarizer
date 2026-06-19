@@ -17,11 +17,9 @@
 
 <body>
 
-    <!-- Background Glow Effects -->
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
 
-    <!-- Navbar -->
     <nav>
         <div class="logo">
             🎥 VideoSummarizer AI
@@ -34,7 +32,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
 
         <h1>
@@ -62,7 +59,6 @@
 
     </section>
 
-    <!-- Stats Section -->
     <section class="stats">
 
         <div class="stat">
@@ -82,75 +78,108 @@
 
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features">
 
         <div class="card">
             <h3>📄 Detailed Summary</h3>
-            <p>
-                Generate comprehensive summaries from long videos within seconds.
-            </p>
+            <p>Generate comprehensive summaries from long videos within seconds.</p>
         </div>
 
         <div class="card">
             <h3>🎯 Key Topics</h3>
-            <p>
-                Extract the most important concepts and learning points automatically.
-            </p>
+            <p>Extract the most important concepts and learning points automatically.</p>
         </div>
 
         <div class="card">
             <h3>🧠 Topic Explanations</h3>
-            <p>
-                Understand every topic with clear AI-generated explanations.
-            </p>
+            <p>Understand every topic with clear AI-generated explanations.</p>
         </div>
 
         <div class="card">
             <h3>💬 Video Q&A</h3>
-            <p>
-                Ask questions and receive answers directly from the video content.
-            </p>
+            <p>Ask questions and receive answers directly from the video content.</p>
         </div>
 
     </section>
 
-    <!-- Results Section -->
     <section id="results" class="results">
 
-    <h2>Summary Results</h2>
+        <h2>Summary Results</h2>
 
-    <div class="result-box">
-        <h3>📄 Summary</h3>
-        <p id="summary">
-            Your generated summary will appear here...
-        </p>
-    </div>
+        <!-- Video Information -->
+        <div class="result-box" id="videoInfo">
 
-    <div class="result-box">
-        <h3>🎯 Key Topics</h3>
-        <p id="topics">
-            Extracted topics will appear here...
-        </p>
-    </div>
+            <h3>🎬 Video Information</h3>
 
-    <div class="result-box">
-        <h3>🧠 Detailed Explanation</h3>
-        <p id="explanation">
-            Detailed explanations will appear here...
-        </p>
-    </div>
+            <img
+                id="videoThumbnail"
+                src=""
+                alt="Video Thumbnail"
+                style="width:100%; max-width:500px; border-radius:15px; display:none;"
+            >
 
-</section>
+            <p id="videoTitle">
+                Video details will appear here...
+            </p>
 
-    <!-- Footer -->
+        </div>
+
+        <!-- Summary -->
+        <div class="result-box">
+
+            <div class="section-header">
+                <h3>📄 Summary</h3>
+                <button class="copy-btn" onclick="copyText('summary')">
+                    Copy
+                </button>
+            </div>
+
+            <p id="summary">
+                Your generated summary will appear here...
+            </p>
+
+        </div>
+
+        <!-- Topics -->
+        <div class="result-box">
+
+            <div class="section-header">
+                <h3>🎯 Key Topics</h3>
+                <button class="copy-btn" onclick="copyText('topics')">
+                    Copy
+                </button>
+            </div>
+
+            <p id="topics">
+                Extracted topics will appear here...
+            </p>
+
+        </div>
+
+        <!-- Explanation -->
+        <div class="result-box">
+
+            <div class="section-header">
+                <h3>🧠 Detailed Explanation</h3>
+                <button class="copy-btn" onclick="copyText('explanation')">
+                    Copy
+                </button>
+            </div>
+
+            <p id="explanation">
+                Detailed explanations will appear here...
+            </p>
+
+        </div>
+
+    </section>
+
     <footer>
         <p>
             © 2026 VideoSummarizer AI | Transform Videos Into Knowledge
         </p>
     </footer>
 
-    <!-- Loader -->
     <div class="loader" id="loader">
         <div class="spinner"></div>
     </div>
