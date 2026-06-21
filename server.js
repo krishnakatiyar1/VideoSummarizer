@@ -8,41 +8,34 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
 
-const genAI = new GoogleGenerativeAI(
-    process.env.GEMINI_API_KEY
-);
+const PORT = process.env.PORT || 3000;
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.use(cors());
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, "public")));
 
 function getVideoId(url) {
-
     try {
-
         const parsedUrl = new URL(url);
+
+        if (parsedUrl.hostname === "youtu.be") {
+            return parsedUrl.pathname.slice(1);
+        }
 
         if (parsedUrl.pathname.includes("/shorts/")) {
             return parsedUrl.pathname.split("/shorts/")[1];
         }
 
-        if (parsedUrl.hostname === "youtu.be") {
-            return parsedUrl.pathname.substring(1);
-        }
-
         return parsedUrl.searchParams.get("v");
-
     } catch {
-
         return null;
     }
 }
 
 app.post("/api/summarize", async (req, res) => {
-
     try {
-
         const { url } = req.body;
 
         if (!url) {
@@ -63,103 +56,78 @@ app.post("/api/summarize", async (req, res) => {
 
         console.log("Fetching transcript...");
 
-        const transcript =
-            await YoutubeTranscript.fetchTranscript(videoId);
+        const transcript = await YoutubeTranscript.fetchTranscript(videoId);
 
-        const transcriptText = transcript
-            .map(item => item.text)
-            .join(" ");
+        const transcriptText = transcript.map(t => t.text).join(" ");
 
         if (!transcriptText) {
             return res.status(400).json({
                 success: false,
-                message: "No transcript found for this video."
+                message: "No transcript found"
             });
         }
 
-        const limitedTranscript =
-            transcriptText.substring(0, 15000);
+        const limitedTranscript = transcriptText.slice(0, 15000);
 
         const model = genAI.getGenerativeModel({
             model: "gemini-2.5-flash"
         });
 
         const prompt = `
-Analyze this YouTube transcript.
-
 Return ONLY valid JSON.
 
 {
-  "summary": "Detailed summary here",
-  "topics": [
-    "Topic 1",
-    "Topic 2",
-    "Topic 3"
-  ],
-  "explanation": "Detailed explanation here"
+  "summary": "...",
+  "topics": ["..."],
+  "explanation": "..."
 }
 
 Transcript:
 ${limitedTranscript}
 `;
 
-        const result =
-            await model.generateContent(prompt);
+        const result = await model.generateContent(prompt);
 
-        let responseText =
-            result.response.text();
+        let text = result.response.text();
 
-        responseText = responseText
-            .replace(/```json/g, "")
-            .replace(/```/g, "")
-            .trim();
+        text = text.replace(/```json/g, "").replace(/```/g, "").trim();
 
-        console.log("Gemini Response:");
-        console.log(responseText);
-
-        let parsedData;
+        let data;
 
         try {
-
-            parsedData = JSON.parse(responseText);
-
+            data = JSON.parse(text);
         } catch {
-
-            parsedData = {
-                summary: responseText,
-                topics: ["AI generated topics unavailable"],
-                explanation: responseText
+            data = {
+                summary: text,
+                topics: ["General"],
+                explanation: text
             };
         }
 
-        if (!Array.isArray(parsedData.topics)) {
-
-            parsedData.topics = [
-                String(parsedData.topics || "General Topic")
-            ];
+        if (!Array.isArray(data.topics)) {
+            data.topics = [String(data.topics || "General")];
         }
 
-        res.json({
+        return res.json({
             success: true,
-            summary: parsedData.summary,
-            topics: parsedData.topics,
-            explanation: parsedData.explanation
+            summary: data.summary,
+            topics: data.topics,
+            explanation: data.explanation
         });
 
-    } catch (error) {
+    } catch (err) {
+        console.error("API ERROR:", err);
 
-        console.error(error);
-
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            message: error.message
+            message: err.message
         });
-
     }
-
 });
 
-const PORT = 3000;
+app.get("/health", (req, res) => {
+    res.json({ status: "ok" });
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

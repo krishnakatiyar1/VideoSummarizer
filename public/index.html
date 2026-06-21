@@ -10,173 +10,252 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
+    <div class="aurora-bg" aria-hidden="true">
+        <span class="aurora aurora-cyan"></span>
+        <span class="aurora aurora-violet"></span>
+        <span class="aurora aurora-pink"></span>
+        <span class="aurora aurora-blue"></span>
+    </div>
 
-    <nav>
-        <div class="logo">
-            🎥 VideoSummarizer AI
-        </div>
+    <nav aria-label="Main navigation">
+        <a class="logo" href="#">
+            <span class="logo-mark">VS</span>
+            <span>VideoSummarizer AI</span>
+        </a>
 
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#features">Features</a>
             <a href="#results">Results</a>
+            <a href="#socials">Socials</a>
         </div>
     </nav>
 
-    <section class="hero">
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Neural transcript intelligence</p>
 
-        <h1>
-            Turn Any YouTube Video Into
-            <span>Detailed Notes & Insights</span>
-        </h1>
+                <h1>
+                    Turn YouTube chaos into
+                    <span>crystal-clear knowledge.</span>
+                </h1>
 
-        <p>
-            Get AI-powered summaries, key topics, explanations, and study notes from any YouTube video in seconds.
-        </p>
+                <p class="hero-text">
+                    Drop any video link and convert long-form content into summaries, topics, explanations, and
+                    study-ready notes with a clean AI workflow.
+                </p>
 
-        <div class="input-box">
+                <div class="input-box">
+                    <input id="videoUrl" type="url" inputmode="url" autocomplete="url"
+                        placeholder="Paste YouTube video URL" aria-label="YouTube video URL">
 
-            <input
-                id="videoUrl"
-                type="text"
-                placeholder="Paste YouTube Video URL..."
-            >
+                    <button id="generateBtn" type="button">
+                        Generate Summary
+                    </button>
+                </div>
 
-            <button id="generateBtn">
-                Generate Summary
-            </button>
-
-        </div>
-
-    </section>
-
-    <section class="stats">
-
-        <div class="stat">
-            <h2>AI</h2>
-            <p>Powered Analysis</p>
-        </div>
-
-        <div class="stat">
-            <h2>Fast</h2>
-            <p>Instant Processing</p>
-        </div>
-
-        <div class="stat">
-            <h2>24/7</h2>
-            <p>Always Available</p>
-        </div>
-
-    </section>
-
-    <section id="features" class="features">
-
-        <div class="card">
-            <h3>📄 Detailed Summary</h3>
-            <p>Generate comprehensive summaries from long videos within seconds.</p>
-        </div>
-
-        <div class="card">
-            <h3>🎯 Key Topics</h3>
-            <p>Extract the most important concepts and learning points automatically.</p>
-        </div>
-
-        <div class="card">
-            <h3>🧠 Topic Explanations</h3>
-            <p>Understand every topic with clear AI-generated explanations.</p>
-        </div>
-
-        <div class="card">
-            <h3>💬 Video Q&A</h3>
-            <p>Ask questions and receive answers directly from the video content.</p>
-        </div>
-
-    </section>
-
-    <section id="results" class="results">
-
-        <h2>Summary Results</h2>
-
-        <!-- Video Information -->
-        <div class="result-box" id="videoInfo">
-
-            <h3>🎬 Video Information</h3>
-
-            <img
-                id="videoThumbnail"
-                src=""
-                alt="Video Thumbnail"
-                style="width:100%; max-width:500px; border-radius:15px; display:none;"
-            >
-
-            <p id="videoTitle">
-                Video details will appear here...
-            </p>
-
-        </div>
-
-        <!-- Summary -->
-        <div class="result-box">
-
-            <div class="section-header">
-                <h3>📄 Summary</h3>
-                <button class="copy-btn" onclick="copyText('summary')">
-                    Copy
-                </button>
+                <div class="trust-row" aria-label="Platform highlights">
+                    <span>Transcript aware</span>
+                    <span>Gemini powered</span>
+                    <span>Study ready</span>
+                </div>
             </div>
 
-            <p id="summary">
-                Your generated summary will appear here...
-            </p>
+            <div class="hero-visual" aria-hidden="true">
+                <div class="screen-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
-        </div>
+                <div class="video-panel">
+                    <div class="scan-line"></div>
+                    <div class="play-core"></div>
+                </div>
 
-        <!-- Topics -->
-        <div class="result-box">
+                <div class="analysis-grid">
+                    <div>
+                        <span>Summary</span>
+                        <strong>92%</strong>
+                    </div>
+                    <div>
+                        <span>Topics</span>
+                        <strong>18</strong>
+                    </div>
+                    <div>
+                        <span>Clarity</span>
+                        <strong>A+</strong>
+                    </div>
+                </div>
 
-            <div class="section-header">
-                <h3>🎯 Key Topics</h3>
-                <button class="copy-btn" onclick="copyText('topics')">
-                    Copy
-                </button>
+                <div class="signal-list">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat">
+                <h2>AI</h2>
+                <p>Powered Analysis</p>
             </div>
 
-            <p id="topics">
-                Extracted topics will appear here...
-            </p>
-
-        </div>
-
-        <!-- Explanation -->
-        <div class="result-box">
-
-            <div class="section-header">
-                <h3>🧠 Detailed Explanation</h3>
-                <button class="copy-btn" onclick="copyText('explanation')">
-                    Copy
-                </button>
+            <div class="stat">
+                <h2>Fast</h2>
+                <p>Instant Processing</p>
             </div>
 
-            <p id="explanation">
-                Detailed explanations will appear here...
-            </p>
+            <div class="stat">
+                <h2>24/7</h2>
+                <p>Always Available</p>
+            </div>
+        </section>
 
-        </div>
+        <section id="features" class="features">
+            <div class="section-title">
+                <p class="eyebrow">Workflow</p>
+                <h2>A sharper command center for every video you study.</h2>
+            </div>
 
-    </section>
+            <div class="feature-grid">
+                <article class="card">
+                    <span class="card-kicker">01</span>
+                    <h3>Detailed Summary</h3>
+                    <p>Generate focused summaries from long videos without losing the core ideas.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-kicker">02</span>
+                    <h3>Key Topics</h3>
+                    <p>Extract the main concepts and learning points automatically.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-kicker">03</span>
+                    <h3>Topic Explanations</h3>
+                    <p>Understand each topic with clean, readable AI-generated explanations.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-kicker">04</span>
+                    <h3>Video Q&amp;A Ready</h3>
+                    <p>Keep the interface ready for future question-answering over video content.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="results" class="results">
+            <div class="section-title">
+                <p class="eyebrow">Output</p>
+                <h2>Summary Results</h2>
+            </div>
+
+            <div class="result-box" id="videoInfo">
+                <h3>Video Information</h3>
+
+                <img id="videoThumbnail" src="" alt="Video Thumbnail">
+
+                <p id="videoTitle">
+                    Video details will appear here...
+                </p>
+            </div>
+
+            <div class="result-box">
+                <div class="section-header">
+                    <h3>Summary</h3>
+                    <button class="copy-btn" onclick="copyText('summary')">
+                        Copy
+                    </button>
+                </div>
+
+                <p id="summary">
+                    Your generated summary will appear here...
+                </p>
+            </div>
+
+            <div class="result-box">
+                <div class="section-header">
+                    <h3>Key Topics</h3>
+                    <button class="copy-btn" onclick="copyText('topics')">
+                        Copy
+                    </button>
+                </div>
+
+                <p id="topics">
+                    Extracted topics will appear here...
+                </p>
+            </div>
+
+            <div class="result-box">
+                <div class="section-header">
+                    <h3>Detailed Explanation</h3>
+                    <button class="copy-btn" onclick="copyText('explanation')">
+                        Copy
+                    </button>
+                </div>
+
+                <p id="explanation">
+                    Detailed explanations will appear here...
+                </p>
+            </div>
+        </section>
+
+        <section id="socials" class="social-hero">
+            <div class="social-intro">
+                <p class="eyebrow">Creator links</p>
+                <h2>Connect with Me.</h2>
+                <p>
+                    Explore my latest projects and learning content. For inquiries or collaborations, reach out through
+                    any of these platforms.
+                </p>
+            </div>
+
+            <section class="profile-card" aria-label="Profile summary">
+                <div class="avatar">KK</div>
+                <p class="profile-label">VideoSummarizer AI</p>
+                <h2>Krishna Katiyar</h2>
+                <p>
+                    AI tools, coding projects, and useful learning content.
+                </p>
+            </section>
+        </section>
+
+        <section class="social-grid" aria-label="Social media links">
+
+            <a class="social-link instagram" href="https://www.instagram.com/_krishna_katiyar" target="_blank" rel="noopener">
+                <span>Instagram</span>
+                <strong>Check my social media</strong>
+            </a>
+
+            <a class="social-link linkedin" href="https://www.linkedin.com/in/krishna-katiyar-1a0220308/" target="_blank" rel="noopener">
+                <span>LinkedIn</span>
+                <strong>Explore my LinkedIn Account</strong>
+            </a>
+
+            <a class="social-link github" href="https://github.com/krishnakatiyar1" target="_blank" rel="noopener">
+                <span>GitHub</span>
+                <strong>Explore my GitHub profile</strong>
+            </a>
+
+            <a class="social-link website" href="http://3.107.69.28" target="_blank" rel="noopener">
+                <span>Website</span>
+                <strong>Check my portfolio</strong>
+            </a>
+        </section>
+    </main>
 
     <footer>
         <p>
-            © 2026 VideoSummarizer AI | Transform Videos Into Knowledge
+            &copy; 2026 VideoSummarizer AI &middot; Created by Krishna Katiyar
         </p>
     </footer>
 
