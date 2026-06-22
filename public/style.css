@@ -74,6 +74,12 @@ nav {
     letter-spacing: 0;
 }
 
+.brand-logo {
+    width: clamp(78px, 9vw, 110px);
+    height: auto;
+    filter: drop-shadow(0 4px 12px color-mix(in srgb, midnightblue 34%, transparent));
+}
+
 .logo-mark {
     display: grid;
     place-items: center;
@@ -777,6 +783,253 @@ footer {
     }
 }
 
+/* Restricted five-color futuristic theme */
+:root {
+    --bg: midnightblue;
+    --panel: color-mix(in srgb, midnightblue 76%, steelblue);
+    --panel-strong: color-mix(in srgb, midnightblue 62%, steelblue);
+    --line: color-mix(in srgb, aqua 28%, transparent);
+    --text: #f4fbff;
+    --muted: #bfd3e0;
+    --cyan: aqua;
+    --violet: steelblue;
+    --pink: midnightblue;
+    --lime: lightseagreen;
+    --amber: olive;
+    --blue: steelblue;
+    --shadow: 0 28px 90px color-mix(in srgb, midnightblue 72%, transparent);
+}
+
+body {
+    background:
+        radial-gradient(circle at 16% 8%, color-mix(in srgb, aqua 34%, transparent), transparent 28rem),
+        radial-gradient(circle at 88% 28%, color-mix(in srgb, steelblue 64%, transparent), transparent 34rem),
+        radial-gradient(circle at 48% 92%, color-mix(in srgb, lightseagreen 42%, transparent), transparent 38rem),
+        linear-gradient(145deg, midnightblue, steelblue, midnightblue);
+    color: var(--text);
+}
+
+body::before {
+    background:
+        linear-gradient(color-mix(in srgb, aqua 13%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, aqua 13%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+body::after {
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, aqua 28%, transparent), color-mix(in srgb, olive 34%, transparent), transparent);
+}
+
+.aurora-bg::after {
+    background: conic-gradient(from 220deg, transparent, aqua, transparent 28%, lightseagreen, transparent 58%, olive, transparent 82%);
+}
+
+.aurora-cyan { background: aqua; }
+.aurora-violet { background: steelblue; }
+.aurora-pink { background: midnightblue; }
+.aurora-blue { background: olive; }
+
+nav {
+    background: linear-gradient(90deg, color-mix(in srgb, midnightblue 88%, steelblue), color-mix(in srgb, steelblue 58%, midnightblue));
+    border-bottom-color: var(--line);
+}
+
+.logo,
+.nav-links a:hover,
+.hero h1,
+.section-title h2,
+.card h3,
+.result-box h3,
+.profile-card h2,
+.social-link {
+    color: var(--text);
+}
+
+.logo-mark,
+.input-box,
+.hero-visual,
+.video-panel,
+.profile-card,
+#videoThumbnail {
+    border-color: color-mix(in srgb, aqua 48%, transparent);
+}
+
+.logo-mark {
+    color: aqua;
+    background: linear-gradient(135deg, steelblue, lightseagreen);
+    box-shadow: inset 0 0 18px color-mix(in srgb, aqua 22%, transparent), 0 0 24px color-mix(in srgb, aqua 24%, transparent);
+}
+
+.nav-links a,
+.hero-text,
+.card p,
+.stat p,
+.result-box p,
+.social-intro p:last-child,
+.profile-card p,
+footer,
+.analysis-grid span {
+    color: var(--muted);
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, aqua, lightseagreen 48%, olive);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 24px color-mix(in srgb, aqua 28%, transparent));
+}
+
+.input-box,
+.hero-visual,
+.result-box,
+.profile-card {
+    background: linear-gradient(145deg, color-mix(in srgb, midnightblue 82%, steelblue), color-mix(in srgb, steelblue 48%, midnightblue));
+}
+
+.input-box input {
+    background: color-mix(in srgb, midnightblue 82%, steelblue);
+    color: aqua;
+}
+
+.input-box input::placeholder { color: lightseagreen; }
+.input-box input:focus { box-shadow: 0 0 0 2px aqua, 0 0 24px color-mix(in srgb, aqua 38%, transparent); }
+
+.input-box button,
+.copy-btn {
+    color: midnightblue;
+    background: linear-gradient(135deg, aqua, lightseagreen);
+    box-shadow: 0 10px 28px color-mix(in srgb, aqua 32%, transparent);
+}
+
+.trust-row span,
+.analysis-grid div,
+.signal-list,
+.stat,
+.card {
+    color: aqua;
+    border-color: var(--line);
+    background: color-mix(in srgb, midnightblue 72%, steelblue);
+}
+
+.video-panel {
+    background:
+        repeating-linear-gradient(90deg, color-mix(in srgb, aqua 16%, transparent) 0 1px, transparent 1px 18px),
+        linear-gradient(145deg, steelblue, lightseagreen, midnightblue);
+}
+
+.scan-line {
+    background: linear-gradient(to bottom, transparent, color-mix(in srgb, aqua 54%, transparent), color-mix(in srgb, olive 38%, transparent), transparent);
+}
+
+.play-core,
+.avatar {
+    color: midnightblue;
+    background: linear-gradient(135deg, aqua, lightseagreen 55%, olive);
+    filter: drop-shadow(0 0 30px color-mix(in srgb, aqua 55%, transparent));
+}
+
+.screen-bar span:nth-child(1) { background: midnightblue; }
+.screen-bar span:nth-child(2) { background: olive; }
+.screen-bar span:nth-child(3) { background: lightseagreen; }
+.signal-list span { background: linear-gradient(90deg, aqua, color-mix(in srgb, steelblue 44%, transparent)); }
+.signal-list span:nth-child(2) { background: linear-gradient(90deg, lightseagreen, color-mix(in srgb, steelblue 44%, transparent)); }
+.signal-list span:nth-child(3) { background: linear-gradient(90deg, olive, color-mix(in srgb, steelblue 44%, transparent)); }
+
+.card:hover,
+.social-link:hover {
+    border-color: aqua;
+    box-shadow: 0 0 34px color-mix(in srgb, aqua 24%, transparent);
+}
+
+.instagram { background: linear-gradient(145deg, midnightblue, lightseagreen); }
+.linkedin { background: linear-gradient(145deg, steelblue, midnightblue); }
+.github { background: linear-gradient(145deg, olive, midnightblue); }
+.website { background: linear-gradient(145deg, lightseagreen, steelblue); }
+
+/* Transcript upload */
+.upload-box {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 14px;
+    border: 1px solid color-mix(in srgb, aqua 34%, transparent);
+    border-radius: 16px;
+    background: linear-gradient(145deg, color-mix(in srgb, midnightblue 60%, steelblue), color-mix(in srgb, steelblue 68%, midnightblue));
+    box-shadow: var(--shadow), 0 0 28px color-mix(in srgb, aqua 10%, transparent);
+    backdrop-filter: blur(20px);
+}
+
+.upload-box h3 {
+    grid-column: 1 / -1;
+    color: var(--text);
+    font-size: .82rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.upload-box input[type="file"] {
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid color-mix(in srgb, aqua 22%, transparent);
+    border-radius: 10px;
+    background: color-mix(in srgb, midnightblue 58%, steelblue);
+    color: var(--muted);
+    font: inherit;
+}
+
+.upload-box input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 7px;
+    background: steelblue;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.upload-box input[type="file"]:focus-visible {
+    outline: 2px solid aqua;
+    outline-offset: 2px;
+}
+
+.upload-box button {
+    padding: 0 22px;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(135deg, aqua, lightseagreen);
+    color: midnightblue;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.upload-box button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+@media (max-width: 720px) {
+    .upload-box {
+        grid-template-columns: 1fr;
+    }
+
+    .upload-box button {
+        min-height: 52px;
+    }
+}
+
+.loader { background: color-mix(in srgb, midnightblue 82%, transparent); }
+.spinner {
+    border-color: color-mix(in srgb, steelblue 55%, transparent);
+    border-top-color: aqua;
+    border-right-color: lightseagreen;
+}
+
 @media (max-width: 430px) {
     html {
         scroll-padding-top: 72px;
@@ -788,6 +1041,10 @@ footer {
 
     .logo {
         font-size: .96rem;
+    }
+
+    .brand-logo {
+        width: 76px;
     }
 
     .logo > span:last-child {
@@ -1172,3 +1429,92 @@ body {
         opacity: .14;
     }
 }
+
+/* Keep this final: it wins over the legacy visual layers above. */
+body {
+    background:
+        radial-gradient(circle at 16% 8%, color-mix(in srgb, aqua 34%, transparent), transparent 28rem),
+        radial-gradient(circle at 88% 28%, color-mix(in srgb, steelblue 64%, transparent), transparent 34rem),
+        radial-gradient(circle at 48% 92%, color-mix(in srgb, lightseagreen 42%, transparent), transparent 38rem),
+        linear-gradient(145deg, midnightblue, steelblue, midnightblue);
+}
+
+body::after {
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, aqua 28%, transparent), color-mix(in srgb, olive 34%, transparent), transparent);
+}
+
+.aurora-bg::after {
+    background: conic-gradient(from 220deg, transparent, aqua, transparent 28%, lightseagreen, transparent 58%, olive, transparent 82%);
+}
+
+.aurora-cyan { background: aqua; }
+.aurora-violet { background: steelblue; }
+.aurora-pink { background: midnightblue; }
+.aurora-blue { background: olive; }
+
+nav {
+    background: linear-gradient(90deg, color-mix(in srgb, midnightblue 88%, steelblue), color-mix(in srgb, steelblue 58%, midnightblue));
+}
+
+.logo-mark {
+    border-color: color-mix(in srgb, aqua 48%, transparent);
+    background: linear-gradient(135deg, steelblue, lightseagreen);
+    color: aqua;
+    box-shadow: inset 0 0 18px color-mix(in srgb, aqua 22%, transparent), 0 0 24px color-mix(in srgb, aqua 24%, transparent);
+}
+
+.nav-links a:hover { background: color-mix(in srgb, aqua 12%, transparent); }
+
+.hero h1 span {
+    background: linear-gradient(90deg, aqua, lightseagreen 48%, olive);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 24px color-mix(in srgb, aqua 28%, transparent));
+}
+
+.input-box,
+.hero-visual,
+.result-box,
+.profile-card {
+    border-color: color-mix(in srgb, aqua 48%, transparent);
+    background: linear-gradient(145deg, color-mix(in srgb, midnightblue 82%, steelblue), color-mix(in srgb, steelblue 48%, midnightblue));
+    box-shadow: var(--shadow), 0 0 38px color-mix(in srgb, aqua 14%, transparent);
+}
+
+.input-box button,
+.copy-btn {
+    color: midnightblue;
+    background: linear-gradient(135deg, aqua, lightseagreen);
+    box-shadow: 0 10px 28px color-mix(in srgb, aqua 32%, transparent);
+}
+
+.video-panel {
+    background:
+        repeating-linear-gradient(90deg, color-mix(in srgb, aqua 16%, transparent) 0 1px, transparent 1px 18px),
+        linear-gradient(145deg, steelblue, lightseagreen, midnightblue);
+}
+
+.play-core,
+.avatar {
+    background: linear-gradient(135deg, aqua, lightseagreen 55%, olive);
+    filter: drop-shadow(0 0 30px color-mix(in srgb, aqua 55%, transparent));
+}
+
+.stat,
+.card,
+.social-link {
+    border-color: var(--line);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, aqua 12%, transparent), 0 18px 55px color-mix(in srgb, midnightblue 48%, transparent);
+}
+
+.card:hover {
+    border-color: aqua;
+    background: var(--panel-strong);
+    box-shadow: 0 0 34px color-mix(in srgb, aqua 24%, transparent);
+}
+
+.instagram { background: linear-gradient(145deg, midnightblue, lightseagreen); }
+.linkedin { background: linear-gradient(145deg, steelblue, midnightblue); }
+.github { background: linear-gradient(145deg, olive, midnightblue); }
+.website { background: linear-gradient(145deg, lightseagreen, steelblue); }

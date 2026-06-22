@@ -2,7 +2,12 @@ console.log("NEW SCRIPT VERSION LOADED");
 
 const button = document.getElementById("generateBtn");
 const loader = document.getElementById("loader");
+const uploadBtn =
+    document.getElementById("uploadBtn");
 
+const transcriptFile =
+    document.getElementById("transcriptFile");
+    
 function getVideoId(url) {
     try {
         const parsedUrl = new URL(url);
@@ -124,6 +129,61 @@ button.addEventListener("click", async () => {
 
         document.getElementById("explanation").innerText =
             error.message;
+
+        alert(error.message);
+
+    } finally {
+
+        loader.style.display = "none";
+    }
+});
+
+
+
+
+
+
+uploadBtn.addEventListener("click", async () => {
+
+    const file = transcriptFile.files[0];
+
+    if (!file) {
+        alert("Please select a transcript file");
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("transcript", file);
+
+    loader.style.display = "flex";
+
+    try {
+
+        const response = await fetch(
+            "/api/upload-transcript",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        document.getElementById("summary")
+            .innerText = data.summary;
+
+        document.getElementById("topics")
+            .innerText = data.topics.join("\n");
+
+        document.getElementById("explanation")
+            .innerText = data.explanation;
+
+    } catch (error) {
 
         alert(error.message);
 

@@ -25,8 +25,7 @@
 
     <nav aria-label="Main navigation">
         <a class="logo" href="#">
-            <span class="logo-mark">VS</span>
-            <span>VideoSummarizer AI</span>
+            <img class="brand-logo" src="video-summariser-logo.png" alt="Video Summariser - Watch less, know more">
         </a>
 
         <div class="nav-links">
@@ -60,6 +59,20 @@
                         Generate Summary
                     </button>
                 </div>
+
+                <div class="upload-box">
+    <h3>OR Upload Transcript File</h3>
+
+    <input
+        type="file"
+        id="transcriptFile"
+        accept=".txt"
+    >
+
+    <button id="uploadBtn" type="button">
+        Summarize Transcript
+    </button>
+</div>
 
                 <div class="trust-row" aria-label="Platform highlights">
                     <span>Transcript aware</span>
