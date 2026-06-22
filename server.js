@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const multer = require("multer");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -15,6 +16,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+const upload = multer({
+    storage: multer.memoryStorage()
+});
 
 function getVideoId(url) {
     try {
@@ -124,6 +128,80 @@ ${limitedTranscript}
         });
     }
 });
+
+app.post(
+    "/api/upload-transcript",
+    upload.single("transcript"),
+    async (req, res) => {
+        try {
+            if (!req.file) {
+                return res.status(400).json({
+                    success: false,
+                    message: "No file uploaded"
+                });
+            }
+
+            const transcriptText = req.file.buffer.toString("utf8");
+
+            const model = genAI.getGenerativeModel({
+                model: "gemini-2.5-flash"
+            });
+
+            const prompt = `
+Return ONLY valid JSON.
+
+{
+  "summary":"...",
+  "topics":["..."],
+  "explanation":"..."
+}
+
+Transcript:
+
+${transcriptText.slice(0, 15000)}
+`;
+
+            const result = await model.generateContent(prompt);
+
+            let text = result.response.text();
+
+            text = text
+                .replace(/```json/g, "")
+                .replace(/```/g, "")
+                .trim();
+
+            let data;
+
+            try {
+                data = JSON.parse(text);
+            } catch {
+                data = {
+                    summary: text,
+                    topics: ["General"],
+                    explanation: text
+                };
+            }
+
+            if (!Array.isArray(data.topics)) {
+                data.topics = [String(data.topics || "General")];
+            }
+
+            return res.json({
+                success: true,
+                summary: data.summary,
+                topics: data.topics,
+                explanation: data.explanation
+            });
+        } catch (error) {
+            console.error(error);
+
+            return res.status(500).json({
+                success: false,
+                message: error.message
+            });
+        }
+    }
+);
 
 app.get("/health", (req, res) => {
     res.json({ status: "ok" });
